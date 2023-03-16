@@ -1,5 +1,9 @@
-# Avalonia.FuncUI Templates
+# Raznorx
 
-This is a dotnet template for the xplat version of Avalonia.FuncUI templates, I haven't merged it yet but you can use this if you're curious
+This is an attempt to create a cross-platform media player with [F#], [Avalonia], and [Avalonia.FuncUI]
 
-Raise an issue if you found something wrong
+I already have a sample of a desktop based media player with Avalonia.FuncUI so I know it's possible
+
+This repository will explorer how to handle multiplatform stuff, for example LibVLCSharp has different packages depending if you're targeting android and desktop (among other platforms like uwp or xamarin forms).
+
+So bear with me while this gets in a relatively good shape
