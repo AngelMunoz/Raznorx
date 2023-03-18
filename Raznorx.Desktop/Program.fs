@@ -7,18 +7,18 @@ open Raznorx.DI
 
 [<Struct>]
 type DesktopEnv =
-    interface AppEnv with
-        member _.Player: IMusicPlayer = failwith "Not Implemented"
+  interface AppEnv with
+    member _.Player: IMusicPlayer = failwith "Not Implemented"
 
-        member _.Songs: ISongProvider = Songs.Impl
+    member _.Songs: ISongProvider = Songs.Impl
 
 module Program =
-    [<EntryPoint; STAThread>]
-    let main argv =
-        AppBuilder
-            .Configure(fun () -> App(DesktopEnv()))
-            .UsePlatformDetect()
-            .StartWithClassicDesktopLifetime(argv)
-        |> ignore
+  [<EntryPoint; STAThread>]
+  let main argv =
+    AppBuilder
+      .Configure(fun () -> App(DesktopEnv()))
+      .UsePlatformDetect()
+      .StartWithClassicDesktopLifetime(argv)
+    |> ignore
 
-        0
+    0

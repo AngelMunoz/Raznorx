@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "msbuild",
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"label": "Build: Raznorx.Desktop.fsproj",
+			"detail": "Build the Raznorx.Desktop.fsproj project using dotnet build"
+		}
+	]
+}

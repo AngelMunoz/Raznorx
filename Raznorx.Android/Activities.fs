@@ -13,10 +13,10 @@ open Raznorx
 
 [<Struct>]
 type AndroidEnv =
-    interface AppEnv with
-        member _.Player: IMusicPlayer = failwith "Not Implemented"
+  interface AppEnv with
+    member _.Player: IMusicPlayer = failwith "Not Implemented"
 
-        member _.Songs: ISongProvider = Songs.Impl
+    member _.Songs: ISongProvider = Songs.Impl
 
 
 [<Activity(Label = "Raznorx.Android",
@@ -25,16 +25,16 @@ type AndroidEnv =
            LaunchMode = LaunchMode.SingleInstance,
            ConfigurationChanges = (ConfigChanges.Orientation ||| ConfigChanges.ScreenSize))>]
 type MainActivity() =
-    inherit AvaloniaActivity<App>()
+  inherit AvaloniaActivity<App>()
 
-    override this.CreateAppBuilder() =
-        let builder = AppBuilder.Configure(fun () -> App(AndroidEnv()))
-        this.CustomizeAppBuilder(builder)
+  override this.CreateAppBuilder() =
+    let builder = AppBuilder.Configure(fun () -> App(AndroidEnv()))
+    this.CustomizeAppBuilder(builder)
 
 [<Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)>]
 type SplashActivity() =
-    inherit Activity()
+  inherit Activity()
 
-    override x.OnResume() =
-        base.OnResume()
-        x.StartActivity(new Intent(Application.Context, typeof<MainActivity>))
+  override x.OnResume() =
+    base.OnResume()
+    x.StartActivity(new Intent(Application.Context, typeof<MainActivity>))
