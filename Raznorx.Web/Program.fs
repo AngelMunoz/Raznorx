@@ -1,19 +1,20 @@
+namespace Raznorx.Web
+
 open System.Runtime.Versioning
 open Avalonia
 open Avalonia.Browser
 
-open AvaloniaTest
-
+open Raznorx
 open Raznorx.Types
 open Raznorx.DI
-
+open Raznorx.Services
 
 [<Struct>]
 type BrowserEnv =
   interface AppEnv with
     member this.Player: IMusicPlayer = failwith "Not Implemented"
 
-    member this.Songs: ISongProvider = failwith "Not Implemented"
+    member this.Songs: ISongProvider = Songs.Impl
 
 
 module Program =

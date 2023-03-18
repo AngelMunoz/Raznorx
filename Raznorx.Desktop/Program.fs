@@ -4,6 +4,7 @@ open System
 open Avalonia
 open Raznorx
 open Raznorx.DI
+open Raznorx.Services
 
 [<Struct>]
 type DesktopEnv =

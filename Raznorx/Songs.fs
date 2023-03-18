@@ -1,4 +1,5 @@
-﻿module Raznorx.Android.Songs
+[<RequireQualifiedAccess>]
+module Raznorx.Services.Songs
 
 
 open System.Threading.Tasks
@@ -34,6 +35,7 @@ let Impl =
   { new ISongProvider with
       member _.FromFileSystem() : Task<Song list> =
         match Application.Current.ApplicationLifetime with
+        | :? IClassicDesktopStyleApplicationLifetime as desktop -> pickSongs desktop.MainWindow.StorageProvider
         | :? ISingleViewApplicationLifetime as view -> pickSongs (TopLevel.GetTopLevel(view.MainView).StorageProvider)
         | _ -> Task.FromResult List.empty
   }

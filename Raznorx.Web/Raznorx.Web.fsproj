@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AvaloniaTest\AvaloniaTest.fsproj" />
+    <ProjectReference Include="..\Raznorx\Raznorx.fsproj" />
   </ItemGroup>
 
 </Project>

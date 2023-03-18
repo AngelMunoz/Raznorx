@@ -15,7 +15,6 @@
   </ItemGroup>
   <ItemGroup>
       <Compile Include="Player.fs" />
-      <Compile Include="Songs.fs" />
       <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

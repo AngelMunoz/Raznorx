@@ -9,9 +9,9 @@ type Application = Android.App.Application
 
 open Avalonia
 open Avalonia.Android
-
 open Raznorx
 open Raznorx.DI
+open Raznorx.Services
 
 [<Struct>]
 type AndroidEnv =
