@@ -4,12 +4,14 @@ open Android.App
 open Android.Content
 open Android.Content.PM
 
+
 type Application = Android.App.Application
 
 open Avalonia
 open Avalonia.Android
-open Raznorx
 
+open Raznorx
+open Raznorx.DI
 
 [<Struct>]
 type AndroidEnv =
@@ -25,15 +27,14 @@ type AndroidEnv =
            LaunchMode = LaunchMode.SingleInstance,
            ConfigurationChanges = (ConfigChanges.Orientation ||| ConfigChanges.ScreenSize))>]
 type MainActivity() =
-  inherit AvaloniaActivity<App>()
+  inherit AvaloniaMainActivity()
 
-  override this.CreateAppBuilder() =
-    let builder = AppBuilder.Configure(fun () -> App(AndroidEnv()))
-    this.CustomizeAppBuilder(builder)
 
 [<Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)>]
 type SplashActivity() =
-  inherit Activity()
+  inherit AvaloniaSplashActivity()
+
+  override _.CreateAppBuilder() = AppBuilder.Configure(fun () -> App(AndroidEnv())).UseAndroid()
 
   override x.OnResume() =
     base.OnResume()

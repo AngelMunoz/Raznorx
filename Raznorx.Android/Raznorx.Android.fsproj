@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Songs.fs" />
     <Compile Include="Activities.fs" />
   </ItemGroup>
 
