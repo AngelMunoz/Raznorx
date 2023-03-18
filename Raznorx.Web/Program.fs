@@ -4,18 +4,25 @@ open Avalonia.Browser
 
 open AvaloniaTest
 
+open Raznorx.Types
+open Raznorx.DI
+
+
+[<Struct>]
+type BrowserEnv =
+    interface AppEnv with
+        member this.Player: IMusicPlayer = failwith "Not Implemented"
+
+        member this.Songs: ISongProvider = failwith "Not Implemented"
+
+
 module Program =
     [<assembly: SupportedOSPlatform("browser")>]
     do ()
 
-    [<CompiledName "BuildAvaloniaApp">] 
-    let buildAvaloniaApp () = 
-        AppBuilder
-            .Configure<App>()
-
     [<EntryPoint>]
     let main argv =
-        buildAvaloniaApp()
-            .SetupBrowserApp("out")
-            |> ignore
+        AppBuilder.Configure(fun () -> App(BrowserEnv())).SetupBrowserApp("out")
+        |> ignore
+
         0

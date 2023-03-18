@@ -6,6 +6,8 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="DI.fs" />
     <Compile Include="Counter.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

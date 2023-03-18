@@ -4,24 +4,24 @@ open Avalonia
 open Avalonia.Controls.ApplicationLifetimes
 open Avalonia.FuncUI.Hosts
 open Avalonia.Themes.Fluent
+open Raznorx.DI
 
-type MainWindow() as this =
+type MainWindow(env: AppEnv) as this =
     inherit HostWindow()
+
     do
         base.Title <- "BasicTemplate"
         base.Width <- 400.0
         base.Height <- 400.0
-        this.Content <- Counter.view()
+        this.Content <- Counter.view (env)
 
-type App() =
+type App(env: AppEnv) =
     inherit Application()
 
-    override this.Initialize() =
-        this.Styles.Add (FluentTheme())
+    override this.Initialize() = this.Styles.Add(FluentTheme())
+
     override this.OnFrameworkInitializationCompleted() =
         match this.ApplicationLifetime with
-        | :? IClassicDesktopStyleApplicationLifetime as desktopLifetime ->
-            desktopLifetime.MainWindow <- MainWindow()
-        | :? ISingleViewApplicationLifetime as singleViewLifetime ->
-            singleViewLifetime.MainView <- Counter.view()
+        | :? IClassicDesktopStyleApplicationLifetime as desktopLifetime -> desktopLifetime.MainWindow <- MainWindow(env)
+        | :? ISingleViewApplicationLifetime as singleViewLifetime -> singleViewLifetime.MainView <- Counter.view (env)
         | _ -> ()

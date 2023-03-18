@@ -5,44 +5,30 @@ module Counter =
     open Avalonia.FuncUI
     open Avalonia.FuncUI.DSL
     open Avalonia.Layout
+    open Raznorx.DI
+    open Raznorx.Types
 
-    let view() =
+    let songTemplate song =
+        TextBlock.create [ TextBlock.text $"{song.name}: - {song.path}" ]
+
+    let view (env: #AppEnv) =
+
         Component(fun ctx ->
-            let state = ctx.useState 0
-            DockPanel.create [
-                DockPanel.verticalAlignment VerticalAlignment.Center
-                DockPanel.horizontalAlignment HorizontalAlignment.Center
-                DockPanel.children [
-                    Button.create [
-                        Button.width 64
-                        Button.horizontalAlignment HorizontalAlignment.Center
-                        Button.horizontalContentAlignment HorizontalAlignment.Center
-                        Button.content "Reset"
-                        Button.onClick (fun _ -> state.Set 0)
-                        Button.dock Dock.Bottom
-                    ]
-                    Button.create [
-                        Button.width 64
-                        Button.horizontalAlignment HorizontalAlignment.Center
-                        Button.horizontalContentAlignment HorizontalAlignment.Center
-                        Button.content "-"
-                        Button.onClick (fun _ -> state.Current - 1 |> state.Set)
-                        Button.dock Dock.Bottom
-                    ]
-                    Button.create [
-                        Button.width 64
-                        Button.horizontalAlignment HorizontalAlignment.Center
-                        Button.horizontalContentAlignment HorizontalAlignment.Center
-                        Button.content "+"
-                        Button.onClick (fun _ -> state.Current + 1 |> state.Set)
-                        Button.dock Dock.Bottom
-                    ]
-                    TextBlock.create [
-                        TextBlock.dock Dock.Top
-                        TextBlock.fontSize 48.0
-                        TextBlock.horizontalAlignment HorizontalAlignment.Center
-                        TextBlock.text (string state.Current)
-                    ]
-                ]
-            ]
-        )
+            let songs = ctx.useState List.empty
+
+            StackPanel.create
+                [ StackPanel.verticalAlignment VerticalAlignment.Center
+                  StackPanel.horizontalAlignment HorizontalAlignment.Center
+                  StackPanel.children
+                      [ ListBox.create
+                            [ ListBox.dataItems songs.Current
+                              ListBox.itemTemplate (DataTemplateView.create<_, _> (songTemplate)) ]
+
+                        Button.create
+                            [ Button.content "Select Music Files"
+                              Button.onClick (fun _ ->
+                                  async {
+                                      let! selectedSongs = env.Songs.FromFileSystem() |> Async.AwaitTask
+                                      songs.Set(selectedSongs)
+                                  }
+                                  |> Async.Start) ] ] ])

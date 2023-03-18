@@ -6,7 +6,7 @@ using Avalonia.iOS;
 using Avalonia.Media;
 
 namespace Raznorx.iOS
-{7
+{
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
