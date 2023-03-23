@@ -8,7 +8,9 @@
   <ItemGroup>
     <Compile Include="Types.fs" />
     <Compile Include="DI.fs" />
-    <Compile Include="Songs.fs" />
+    <Compile Include="MusicProvider.fs" />
+    <Compile Include="Components/MusicLibrary.fs" />
+    <Compile Include="Components/Playlist.fs" />
     <Compile Include="MainView.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -19,5 +21,6 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
 
     <PackageReference Include="Avalonia.FuncUI" Version="$(FuncUIVersion)" />
+    <PackageReference Include="FSharp.Control.Reactive" Version="5.0.5" />
   </ItemGroup>
 </Project>

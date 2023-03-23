@@ -8,10 +8,11 @@ open Raznorx.Services
 
 [<Struct>]
 type DesktopEnv =
-  interface AppEnv with
-    member _.Player: IMusicPlayer = failwith "Not Implemented"
+  
+  interface ApplicationEnvironment with
+    member _.MusicPlayer: IMusicPlayer = failwith "Not Implemented"
 
-    member _.Songs: ISongProvider = Songs.Impl
+    member _.MusicProvider: IMusicProvider = MusicProvider.Impl
 
 module Program =
   [<EntryPoint; STAThread>]

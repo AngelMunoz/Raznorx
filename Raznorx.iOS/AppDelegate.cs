@@ -1,19 +1,20 @@
-using System;
-using Raznorx.DI;
-
 namespace Raznorx.iOS;
 
+
+using System;
 using Foundation;
 using UIKit;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.iOS;
 using Avalonia.Media;
+using Raznorx.DI;
 
-public struct IosEnv: AppEnv
+
+public struct IosEnv: ApplicationEnvironment
 {
-    public IMusicPlayer Player => throw new NotImplementedException("Not Implemented");
-    public ISongProvider Songs => throw new NotImplementedException("Not Implemented");
+    public IMusicPlayer MusicPlayer => throw new NotImplementedException("Not Implemented");
+    public IMusicProvider MusicProvider => Services.MusicProvider.Impl;
 }
 
 public class IosApp: App

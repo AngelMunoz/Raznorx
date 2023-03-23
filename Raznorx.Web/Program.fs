@@ -11,10 +11,10 @@ open Raznorx.Services
 
 [<Struct>]
 type BrowserEnv =
-  interface AppEnv with
-    member this.Player: IMusicPlayer = failwith "Not Implemented"
+  interface ApplicationEnvironment with
+    member _.MusicPlayer: IMusicPlayer = failwith "Not Implemented"
 
-    member this.Songs: ISongProvider = Songs.Impl
+    member _.MusicProvider: IMusicProvider = MusicProvider.Impl
 
 
 module Program =
